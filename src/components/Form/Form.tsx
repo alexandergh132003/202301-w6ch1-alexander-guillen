@@ -13,7 +13,7 @@ const Form = () => {
     <FormStyled>
       <label htmlFor="form-user-input">ToDo</label>
       <input type="text" id="form-user-input" required />
-      <button onClick={handleClick}>Add some shit to do</button>
+      <button onClick={handleClick}>Add something to do</button>
     </FormStyled>
   );
 };
