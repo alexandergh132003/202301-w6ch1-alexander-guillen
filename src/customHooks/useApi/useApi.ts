@@ -8,7 +8,7 @@ const useAPI = () => {
 
   const loadToDoList = useCallback(() => {
     (async () => {
-      const response = await fetch("http://localhost:3001/list");
+      const response = await fetch(process.env.REACT_APP_VARIABLE!);
       const data = await response.json();
 
       dispatch(loadToDoListActionCreator(data));
@@ -29,7 +29,7 @@ const useAPI = () => {
     };
 
     (async () => {
-      await fetch("http://localhost:3001/list", {
+      await fetch(process.env.REACT_APP_VARIABLE!, {
         method: "POST",
         body: JSON.stringify(newToDo),
         headers: {
@@ -44,7 +44,9 @@ const useAPI = () => {
   const deleteToDo = useCallback(
     (id: number) => {
       (async () => {
-        await fetch(`http://localhost:3001/list/${id}`, { method: "DELETE" });
+        await fetch(`${process.env.REACT_APP_VARIABLE!}/${id}`, {
+          method: "DELETE",
+        });
 
         loadToDoList();
       })();
@@ -55,7 +57,7 @@ const useAPI = () => {
   const toggleToDo = useCallback(
     (toDo: listItem) => {
       (async () => {
-        await fetch(`http://localhost:3001/list/${toDo.id}`, {
+        await fetch(`${process.env.REACT_APP_VARIABLE!}/${toDo.id}`, {
           method: "PUT",
           body: JSON.stringify({
             ...toDo,
